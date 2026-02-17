@@ -3,250 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PI HYEKONG (PHK) | Global Robotics Syndicate</title>
+    <title>PI HYEKONG (PHK) | The Supreme Universal Syndicate</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #ff4d00;
-            --bg-dark: #000000;
-            --card-bg: #0a0a0a;
-            --text-main: #ffffff;
-            --text-dim: #888888;
+            --primary: #ff4d00; --fusion: #00d4ff; --space: #7a2fff;
+            --uam: #ffce00; --home: #9b59b6; --defense: #c0392b;
+            --bg: #000; --card: #080808; --text: #fff;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--bg-dark); 
-            color: var(--text-main); 
-            font-family: 'Pretendard', sans-serif;
-            line-height: 1.8;
-            overflow-x: hidden;
-        }
-
-        /* 배경 격자 애니메이션 */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+        body { background: var(--bg); color: var(--text); font-family: 'Inter', 'Pretendard', sans-serif; overflow-x: hidden; }
+        
+        /* 백그라운드 매트릭스 효과 */
+        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255, 77, 0, 0.05) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 77, 0, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: -1;
-        }
+            background-size: 40px 40px; z-index: -1; }
 
-        /* 상단 언어 선택바 */
-        .lang-bar {
-            position: fixed; top: 0; width: 100%; 
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
-            display: flex; justify-content: center; gap: 15px;
-            padding: 15px; z-index: 1000; border-bottom: 1px solid #222;
-        }
-        .lang-btn {
-            background: none; border: 1px solid #444; color: #888;
-            padding: 5px 12px; cursor: pointer; font-size: 12px; transition: 0.3s;
-        }
-        .lang-btn.active { border-color: var(--primary); color: var(--primary); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95);
+            padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid #333; z-index: 1000; }
+        .lang-nav select { background: #000; color: var(--primary); border: 1px solid var(--primary); padding: 5px 15px; border-radius: 5px; cursor: pointer; }
 
-        header {
-            height: 100vh;
-            display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-        }
+        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .glitch-logo { font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; letter-spacing: 20px; 
+            background: linear-gradient(to bottom, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .logo-text {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900; letter-spacing: 20px;
-            background: linear-gradient(to bottom, #fff 0%, #444 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
+        section { padding: 100px 8%; border-bottom: 1px solid #111; display: none; }
+        section.active { display: block; animation: fadeInUp 0.8s ease-out; }
 
-        .hero-sub { font-size: 1.2rem; color: var(--primary); letter-spacing: 5px; margin-top: 20px; }
+        .synergy-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; margin-top: 50px; }
+        .s-card { background: var(--card); border: 1px solid #222; padding: 40px; position: relative; overflow: hidden; }
+        .s-card:hover { border-color: var(--primary); box-shadow: 0 0 30px rgba(255,77,0,0.1); }
+        .s-card h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
+        .s-card h3 i { font-size: 2.2rem; }
+        .interaction-list { list-style: none; margin-top: 20px; }
+        .interaction-list li { margin-bottom: 15px; color: #aaa; font-size: 0.95rem; line-height: 1.6; }
+        .interaction-list b { color: #fff; display: block; margin-bottom: 5px; }
 
-        /* 다국어 섹션 제어 */
-        .lang-section { display: none; padding: 100px 10%; }
-        .lang-section.active { display: block; animation: fadeIn 1s forwards; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        footer { padding: 80px; text-align: center; color: #444; border-top: 1px solid #111; }
 
-        /* 아랍어 전용 RTL */
-        [data-lang="ar"] { direction: rtl; text-align: right; }
-
-        .section-title {
-            font-size: 3rem; margin-bottom: 50px;
-            border-left: 8px solid var(--primary); padding-left: 25px;
-        }
-        [data-lang="ar"] .section-title { border-left: none; border-right: 8px solid var(--primary); padding-right: 25px; }
-
-        .project-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px; margin-top: 50px;
-        }
-
-        .p-card {
-            background: var(--card-bg); padding: 40px;
-            border: 1px solid #222; transition: 0.4s;
-        }
-        .p-card:hover { border-color: var(--primary); transform: translateY(-10px); }
-        .p-card h3 { font-size: 1.8rem; color: var(--primary); margin-bottom: 20px; }
-        .p-card ul { list-style: none; color: var(--text-dim); font-size: 0.95rem; }
-        .p-card ul li { margin-bottom: 10px; display: flex; align-items: center; }
-        .p-card ul li i { margin-right: 10px; color: var(--primary); font-size: 10px; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        footer { padding: 80px 10%; text-align: center; border-top: 1px solid #111; color: #444; font-size: 12px; }
+        /* 아랍어 전용 */
+        [lang="ar"] { direction: rtl; text-align: right; }
     </style>
 </head>
 <body>
-
-    <div class="lang-bar">
-        <button class="lang-btn active" onclick="setLang('ko')">KOREAN</button>
-        <button class="lang-btn" onclick="setLang('en')">ENGLISH</button>
-        <button class="lang-btn" onclick="setLang('zh')">CHINESE</button>
-        <button class="lang-btn" onclick="setLang('ar')">ARABIC</button>
-        <button class="lang-btn" onclick="setLang('es')">SPANISH</button>
-        <button class="lang-btn" onclick="setLang('ja')">JAPANESE</button>
-    </div>
+    <div class="grid-overlay"></div>
+    <nav>
+        <div style="font-weight: 900; color: var(--primary); font-size: 1.5rem; letter-spacing: 2px;">PHK SUPREME</div>
+        <div class="lang-nav">
+            <select onchange="updateLang(this.value)">
+                <option value="ko">대한민국 (KOREA)</option>
+                <option value="en">UNITED STATES (GLOBAL)</option>
+                <option value="ar">MIDDLE EAST (ARABIC)</option>
+                <option value="zh">CHINA (ASIA)</option>
+                <option value="es">EUROPE (SPAIN)</option>
+                <option value="ja">JAPAN (TOKYO)</option>
+            </select>
+        </div>
+    </nav>
 
     <header>
-        <div class="logo-text">PI HYEKONG</div>
-        <div id="main-sub" class="hero-sub">THE SUPREME ARCHITECT OF ROBOTICS</div>
+        <div class="glitch-logo">PI HYEKONG</div>
+        <p id="hero-sub" style="font-size: 1.3rem; color: #666; letter-spacing: 10px; margin-top: 30px;">GLOBAL HYPER-SYNERGY SYNDICATE</p>
     </header>
 
-    <main>
-        <div id="ko" class="lang-section active" data-lang="ko">
-            <h2 class="section-title">글로벌 미션</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">PHK는 포스코의 강철과 Figure AI의 지능을 결합하여 인류 노동을 재정의합니다.</p>
-            <div class="project-grid">
-                <div class="p-card">
-                    <h3>PROJECT: TERRA-G</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> 지능형 수확: AI 비전 숙도 판별 수확</li>
-                        <li><i class="fas fa-circle"></i> 전천후 기동: 농촌 경사지 자율 주행</li>
-                        <li><i class="fas fa-circle"></i> 자율 방제: 타겟형 정밀 약제 살포</li>
+    <main id="content-main">
+        <section id="ko" class="active" lang="ko">
+            <h2 style="font-size: 3.5rem; margin-bottom: 30px;">산업 초연결 매트릭스</h2>
+            <p style="color: #888; font-size: 1.2rem;">각 분야의 상호작용이 만드는 PHK의 윈-윈(Win-Win) 메커니즘</p>
+            
+            <div class="synergy-box">
+                <div class="s-card">
+                    <h3><i class="fas fa-atom"></i> 인공태양 x 휴머노이드</h3>
+                    <ul class="interaction-list">
+                        <li><b>[에너지 공급]</b> 인공태양의 무한한 청정 에너지는 전 지구 PHK 로봇 군단의 영구적 동력이 됩니다.</li>
+                        <li><b>[특수 유지보수]</b> 인간이 접근할 수 없는 1,500도 이상의 핵융합로 내부는 PHK 특수 내열 휴머노이드가 관리합니다.</li>
                     </ul>
                 </div>
-                <div class="p-card">
-                    <h3>PROJECT: AQUA-M</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> 내식성 강화: 포스코 특수 합금 외장</li>
-                        <li><i class="fas fa-circle"></i> 극한 유지보수: 양식장 및 해상 시설 관리</li>
-                        <li><i class="fas fa-circle"></i> 지능형 선별: 어획 즉시 자동 분류 시스템</li>
+                <div class="s-card">
+                    <h3><i class="fas fa-network-wired"></i> UMB x 드론택시 x 물류</h3>
+                    <ul class="interaction-list">
+                        <li><b>[지능형 통제]</b> UMB(통합보드)는 도심의 드론택시와 자율주행 물류 로봇의 경로를 실시간 최적화하여 지체 시간을 제로(0)화합니다.</li>
+                        <li><b>[물류 혁명]</b> 파츠뱅크의 부품을 드론택시가 수송하고, 도착지에서 로봇이 즉시 교체하는 자동 정비망을 구축합니다.</li>
                     </ul>
                 </div>
-                <div class="p-card">
-                    <h3>PROJECT: IRON BRAIN</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> 초고온 대응: 1500도 제철소 환경 작업</li>
-                        <li><i class="fas fa-circle"></i> 안전 무인화: 고위험 구역 투입 제로화</li>
-                        <li><i class="fas fa-circle"></i> 정밀 가공: AI 비전 기반 강판 결함 분석</li>
+                <div class="s-card">
+                    <h3><i class="fas fa-rocket"></i> 우주산업 x 방산 x 파츠뱅크</h3>
+                    <ul class="interaction-list">
+                        <li><b>[행성 방어]</b> 우주 기지 건설 기술은 곧 고도화된 방산 기술로 치환되어 지구 및 행성간 안보 시스템을 구축합니다.</li>
+                        <li><b>[현지 생산]</b> 파츠뱅크의 3D 프린팅 기술은 우주 현지에서 로봇 부품을 생산하여 보급망의 한계를 극복합니다.</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-
-        <div id="en" class="lang-section" data-lang="en">
-            <h2 class="section-title">GLOBAL MISSION</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">PHK integrates POSCO's steel with Figure AI's intelligence to redefine human labor.</p>
-            <div class="project-grid">
-                <div class="p-card">
-                    <h3>PROJECT: TERRA-G</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> Precision Harvesting via AI Vision</li>
-                        <li><i class="fas fa-circle"></i> All-terrain Autonomous Navigation</li>
-                        <li><i class="fas fa-circle"></i> Targeted Smart Pest Control</li>
+                <div class="s-card">
+                    <h3><i class="fas fa-dna"></i> BIO BANK x 의료 x 1가구 다로봇</h3>
+                    <ul class="interaction-list">
+                        <li><b>[예방 의료]</b> 가정에 상주하는 '케어 로봇'이 거주자의 바이오 데이터를 수집, BIO BANK와 연동하여 질병을 사전에 차단합니다.</li>
+                        <li><b>[장기 보존]</b> 휴머노이드의 정밀 제어 기술은 BIO BANK 내 생체 샘플의 완벽한 핸들링과 수술 로봇 기술의 표준이 됩니다.</li>
                     </ul>
                 </div>
-                <div class="p-card">
-                    <h3>PROJECT: AQUA-M</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> Anti-corrosive POSCO Steel Body</li>
-                        <li><i class="fas fa-circle"></i> Underwater Infrastructure Maintenance</li>
-                        <li><i class="fas fa-circle"></i> Automated Fishery Sorting Systems</li>
-                    </ul>
-                </div>
-                <div class="p-card">
-                    <h3>PROJECT: IRON BRAIN</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> 1500°C High-Heat Resistant Operation</li>
-                        <li><i class="fas fa-circle"></i> Zero-Human Hazardous Zone Protocols</li>
-                        <li><i class="fas fa-circle"></i> AI-Vision Defect Detection Engine</li>
+                <div class="s-card">
+                    <h3><i class="fas fa-seedling"></i> 농어촌 x PHONE x 휴머노이드</h3>
+                    <ul class="interaction-list">
+                        <li><b>[원격 경영]</b> 도시의 소유주가 PHK PHONE을 통해 농촌/어촌의 로봇 군단을 실시간 지휘하며 생산물을 직접 관리합니다.</li>
+                        <li><b>[정밀 조업]</b> 고령화된 지역의 노동을 Figure AI 로봇이 완벽 대체하여 식량 주권을 PHK 시스템 아래 통합합니다.</li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div id="ar" class="lang-section" data-lang="ar">
-            <h2 class="section-title">المهمة العالمية</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">تجمع PHK بين فولاذ POSCO وذكاء Figure AI لإعادة تعريف العمل البشري.</p>
-            <div class="project-grid">
-                <div class="p-card">
-                    <h3>PROJECT: TERRA-G</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> الحصاد الدقيق عبر رؤية الذكاء الاصطناعي</li>
-                        <li><i class="fas fa-circle"></i> الملاحة الذاتية في جميع التضاريس</li>
-                        <li><i class="fas fa-circle"></i> مكافحة الآفات الذكية المستهدفة</li>
+        <section id="en" lang="en">
+            <h2 style="font-size: 3.5rem; margin-bottom: 30px;">Global Hyper-Synergy</h2>
+            <div class="synergy-box">
+                <div class="s-card">
+                    <h3><i class="fas fa-atom"></i> Fusion Energy x Humanoids</h3>
+                    <ul class="interaction-list">
+                        <li><b>[Energy]</b> Infinite energy powers the global robot network.</li>
+                        <li><b>[Maintenance]</b> Heat-resistant robots manage fusion reactors beyond human limits.</li>
                     </ul>
                 </div>
-                <div class="p-card">
-                    <h3>PROJECT: IRON BRAIN</h3>
-                    <ul>
-                        <li><i class="fas fa-circle"></i> العمل في بيئة حرارة 1500 درجة</li>
-                        <li><i class="fas fa-circle"></i> بروتوكولات المناطق الخطرة الخالية من البشر</li>
-                        <li><i class="fas fa-circle"></i> محرك اكتشاف العيوب برؤية الذكاء الاصطناعي</li>
-                    </ul>
                 </div>
-            </div>
-        </div>
+        </section>
 
-        <div id="zh" class="lang-section" data-lang="zh">
-            <h2 class="section-title">全球使命</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">PHK 将浦项制铁的钢铁与 Figure AI 的智能相结合，重新定义人类劳动。</p>
-            <div class="project-grid">
-                <div class="p-card"><h3>TERRA-G (农业)</h3><ul><li><i class="fas fa-circle"></i> AI视觉精准采收</li><li><i class="fas fa-circle"></i> 全地形自主导航</li></ul></div>
-                <div class="p-card"><h3>IRON BRAIN (工业)</h3><ul><li><i class="fas fa-circle"></i> 1500°C超高温作业</li><li><i class="fas fa-circle"></i> 高危区域零人工化</li></ul></div>
-            </div>
-        </div>
-
-        <div id="es" class="lang-section" data-lang="es">
-            <h2 class="section-title">MISIÓN GLOBAL</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">PHK integra el acero de POSCO con la inteligencia de Figure AI.</p>
-            <div class="project-grid">
-                <div class="p-card"><h3>AQUA-M (Marino)</h3><ul><li><i class="fas fa-circle"></i> Cuerpo de acero anticorrosivo</li><li><i class="fas fa-circle"></i> Mantenimiento de infraestructuras</li></ul></div>
-            </div>
-        </div>
-
-        <div id="ja" class="lang-section" data-lang="ja">
-            <h2 class="section-title">グローバルミッション</h2>
-            <p style="font-size: 1.5rem; color: #ccc;">PHKはポスコの鉄鋼とFigure AIの知能を統合し、人間の労働を再定義します。</p>
-            <div class="project-grid">
-                <div class="p-card"><h3>TERRA-G (農業)</h3><ul><li><i class="fas fa-circle"></i> AIビジョンによる精密収穫</li><li><i class="fas fa-circle"></i> 全地形対応の自律走行</li></ul></div>
-            </div>
-        </div>
-
-    </main>
+        </main>
 
     <footer>
-        <p>PI HYEKONG HOLDINGS (PHK) | GLOBAL STRATEGY OFFICE</p>
-        <p style="margin-top: 10px; opacity: 0.5;">&copy; 2026 PI HYEKONG. ALL RIGHTS RESERVED. PRIVATE & CONFIDENTIAL.</p>
+        <p>PI HYEKONG HOLDINGS (PHK) | GLOBAL SYNERGY COMMAND CENTER</p>
+        <p style="margin-top: 15px; font-size: 0.7rem; opacity: 0.4;">CONFIDENTIAL: Strategic interaction map for PHK-Figure AI-POSCO partnership.</p>
     </footer>
 
     <script>
-        function setLang(lang) {
-            // 섹션 전환
-            document.querySelectorAll('.lang-section').forEach(s => s.classList.remove('active'));
+        function updateLang(lang) {
+            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
             document.getElementById(lang).classList.add('active');
+            document.body.setAttribute('lang', lang);
             
-            // 버튼 상태 전환
-            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
-
-            // 서브타이틀 변경
-            const subs = {
-                ko: "로보틱스 제국의 최고 설계자", en: "THE SUPREME ARCHITECT OF ROBOTICS",
-                zh: "机器人帝国的最高设计师", ar: "المهندس الأعلى للروبوتات",
-                es: "EL ARQUITECTO SUPREMO DE LA ROBÓTICA", ja: "ロボティクス帝国の最高設計者"
+            const titles = {
+                ko: "인류 문명 재설계의 최고 설계자", en: "THE SUPREME ARCHITECT OF FUTURE",
+                ar: "مهندس الحضارة المستقبلية", zh: "未来文明的最高设计师",
+                es: "ARQUITECTO SUPREMO DEL FUTURO", ja: "未来文明の最高設計者"
             };
-            document.getElementById('main-sub').innerText = subs[lang];
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('hero-sub').innerText = titles[lang];
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
 </body>
