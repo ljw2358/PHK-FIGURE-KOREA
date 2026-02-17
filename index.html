@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PI HYEKONG (PHK) | The Supreme Universal Syndicate</title>
+    <title>PHK SYNDICATE | Global Hyper-Synergy & Future Civilization</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -12,37 +12,75 @@
             --bg: #000; --card: #080808; --text: #fff;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', 'Pretendard', sans-serif; overflow-x: hidden; }
-        
-        /* 백그라운드 매트릭스 효과 */
-        .grid-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        body { 
+            background: var(--bg); color: var(--text); 
+            font-family: 'Inter', 'Pretendard', sans-serif; 
+            line-height: 1.8; overflow-x: hidden;
+        }
+
+        /* 하이테크 격자 배경 */
+        .grid-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: linear-gradient(rgba(255, 77, 0, 0.05) 1px, transparent 1px),
                               linear-gradient(90deg, rgba(255, 77, 0, 0.05) 1px, transparent 1px);
-            background-size: 40px 40px; z-index: -1; }
+            background-size: 50px 50px; z-index: -1;
+        }
 
-        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95);
+        /* 네비게이션 */
+        nav {
+            position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95);
             padding: 20px 5%; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #333; z-index: 1000; }
-        .lang-nav select { background: #000; color: var(--primary); border: 1px solid var(--primary); padding: 5px 15px; border-radius: 5px; cursor: pointer; }
+            border-bottom: 1px solid #333; z-index: 1000; backdrop-filter: blur(15px);
+        }
+        .nav-logo { font-weight: 900; color: var(--primary); letter-spacing: 3px; font-size: 1.6rem; }
+        .lang-control select { 
+            background: #111; color: var(--primary); border: 1px solid var(--primary); 
+            padding: 8px 20px; border-radius: 5px; cursor: pointer; font-weight: bold;
+        }
 
-        header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
-        .glitch-logo { font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; letter-spacing: 20px; 
-            background: linear-gradient(to bottom, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        header {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+        .main-logo {
+            font-size: clamp(3rem, 12vw, 8rem); font-weight: 900; letter-spacing: 25px;
+            background: linear-gradient(to right, #fff, var(--primary), #fff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 30px rgba(255,77,0,0.3));
+        }
 
-        section { padding: 100px 8%; border-bottom: 1px solid #111; display: none; }
-        section.active { display: block; animation: fadeInUp 0.8s ease-out; }
+        /* 본문 섹션 */
+        section { padding: 120px 8%; border-bottom: 1px solid #111; display: none; }
+        section.active { display: block; animation: fadeInUp 1s forwards; }
 
-        .synergy-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(450px, 1fr)); gap: 40px; margin-top: 50px; }
-        .s-card { background: var(--card); border: 1px solid #222; padding: 40px; position: relative; overflow: hidden; }
-        .s-card:hover { border-color: var(--primary); box-shadow: 0 0 30px rgba(255,77,0,0.1); }
-        .s-card h3 { font-size: 1.8rem; margin-bottom: 20px; color: var(--primary); display: flex; align-items: center; gap: 15px; }
-        .s-card h3 i { font-size: 2.2rem; }
-        .interaction-list { list-style: none; margin-top: 20px; }
-        .interaction-list li { margin-bottom: 15px; color: #aaa; font-size: 0.95rem; line-height: 1.6; }
-        .interaction-list b { color: #fff; display: block; margin-bottom: 5px; }
+        .section-header { margin-bottom: 80px; text-align: center; }
+        .section-header h2 { font-size: 4rem; color: var(--primary); margin-bottom: 20px; }
+        .section-header p { font-size: 1.4rem; color: #888; }
 
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        footer { padding: 80px; text-align: center; color: #444; border-top: 1px solid #111; }
+        /* 시너지 그리드 */
+        .synergy-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr)); gap: 40px;
+        }
+        .s-card {
+            background: var(--card); border: 1px solid #1a1a1a; padding: 50px;
+            position: relative; transition: 0.5s ease;
+        }
+        .s-card:hover { border-color: var(--primary); transform: translateY(-10px); background: #0c0c0c; }
+        .s-card h3 { 
+            font-size: 2.2rem; margin-bottom: 30px; color: #fff; 
+            display: flex; align-items: center; gap: 20px;
+        }
+        .s-card h3 i { color: var(--primary); font-size: 2.5rem; }
+
+        /* 윈-윈 상호작용 리스트 (이 부분이 길어짐) */
+        .interaction-box { margin-top: 30px; border-top: 1px solid #333; padding-top: 20px; }
+        .win-win-item { margin-bottom: 25px; }
+        .win-win-item h4 { color: var(--primary); font-size: 1.2rem; margin-bottom: 10px; text-transform: uppercase; }
+        .win-win-item p { color: #aaa; font-size: 1rem; line-height: 1.8; }
+        .win-win-item span { color: #fff; font-weight: bold; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(50px); } to { opacity: 1; transform: translateY(0); } }
 
         /* 아랍어 전용 */
         [lang="ar"] { direction: rtl; text-align: right; }
@@ -50,102 +88,123 @@
 </head>
 <body>
     <div class="grid-overlay"></div>
+
     <nav>
-        <div style="font-weight: 900; color: var(--primary); font-size: 1.5rem; letter-spacing: 2px;">PHK SUPREME</div>
-        <div class="lang-nav">
-            <select onchange="updateLang(this.value)">
-                <option value="ko">대한민국 (KOREA)</option>
-                <option value="en">UNITED STATES (GLOBAL)</option>
-                <option value="ar">MIDDLE EAST (ARABIC)</option>
-                <option value="zh">CHINA (ASIA)</option>
-                <option value="es">EUROPE (SPAIN)</option>
-                <option value="ja">JAPAN (TOKYO)</option>
+        <div class="nav-logo">PI HYEKONG (PHK)</div>
+        <div class="lang-control">
+            <select onchange="setLanguage(this.value)">
+                <option value="ko">KOREAN (대한민국)</option>
+                <option value="en">ENGLISH (GLOBAL)</option>
+                <option value="zh">CHINESE (中国)</option>
+                <option value="ar">ARABIC (العربية)</option>
+                <option value="es">SPANISH (ESPAÑOL)</option>
+                <option value="ja">JAPANESE (日本語)</option>
             </select>
         </div>
     </nav>
 
     <header>
-        <div class="glitch-logo">PI HYEKONG</div>
-        <p id="hero-sub" style="font-size: 1.3rem; color: #666; letter-spacing: 10px; margin-top: 30px;">GLOBAL HYPER-SYNERGY SYNDICATE</p>
+        <div class="main-logo">PI HYEKONG</div>
+        <p style="letter-spacing: 10px; color: #666; font-size: 1.5rem; margin-top: 30px;">THE SUPREME SYNDICATE OF HYPER-SYNERGY</p>
     </header>
 
-    <main id="content-main">
+    <main>
         <section id="ko" class="active" lang="ko">
-            <h2 style="font-size: 3.5rem; margin-bottom: 30px;">산업 초연결 매트릭스</h2>
-            <p style="color: #888; font-size: 1.2rem;">각 분야의 상호작용이 만드는 PHK의 윈-윈(Win-Win) 메커니즘</p>
-            
-            <div class="synergy-box">
+            <div class="section-header">
+                <h2>초연결 시너지 (WIN-WIN)</h2>
+                <p>로봇을 심장으로, 8대 산업이 거대한 유기체처럼 맞물려 작동합니다.</p>
+            </div>
+
+            <div class="synergy-grid">
                 <div class="s-card">
                     <h3><i class="fas fa-atom"></i> 인공태양 x 휴머노이드</h3>
-                    <ul class="interaction-list">
-                        <li><b>[에너지 공급]</b> 인공태양의 무한한 청정 에너지는 전 지구 PHK 로봇 군단의 영구적 동력이 됩니다.</li>
-                        <li><b>[특수 유지보수]</b> 인간이 접근할 수 없는 1,500도 이상의 핵융합로 내부는 PHK 특수 내열 휴머노이드가 관리합니다.</li>
-                    </ul>
+                    <div class="interaction-box">
+                        <div class="win-win-item">
+                            <h4>[산업적 시너지] 무한 에너지와 로봇 군단</h4>
+                            <p><span>윈-윈 포인트:</span> 인공태양(핵융합)은 전 지구적 PHK 로봇 인프라에 24시간 청정 에너지를 공급합니다. 반면, 인간이 접근할 수 없는 1,500도 이상의 초고온 발전소 내부는 PHK의 특수 내열 휴머노이드가 완벽하게 정비합니다.</p>
+                        </div>
+                        <div class="win-win-item">
+                            <h4>[특수 유지보수] 위험 제로화</h4>
+                            <p>방사능 및 고열 노출 위험이 있는 구역에 휴머노이드를 투입하여 인명 피해를 제로화하고, 발전 효율을 극대화합니다.</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="s-card">
-                    <h3><i class="fas fa-network-wired"></i> UMB x 드론택시 x 물류</h3>
-                    <ul class="interaction-list">
-                        <li><b>[지능형 통제]</b> UMB(통합보드)는 도심의 드론택시와 자율주행 물류 로봇의 경로를 실시간 최적화하여 지체 시간을 제로(0)화합니다.</li>
-                        <li><b>[물류 혁명]</b> 파츠뱅크의 부품을 드론택시가 수송하고, 도착지에서 로봇이 즉시 교체하는 자동 정비망을 구축합니다.</li>
-                    </ul>
+                    <h3><i class="fas fa-helicopter"></i> UMB x 드론택시 x 물류</h3>
+                    <div class="interaction-box">
+                        <div class="win-win-item">
+                            <h4>[물류 시너지] 하늘의 실크로드</h4>
+                            <p><span>윈-윈 포인트:</span> UMB(통합보드)는 도심 항공 트래픽을 초단위로 연산하여 드론택시의 최적 경로를 설정합니다. 파츠뱅크의 긴급 부품은 드론택시를 통해 수송되며, 도착 현장에서 로봇이 즉시 자가 수리를 완료합니다.</p>
+                        </div>
+                        <div class="win-win-item">
+                            <h4>[교통 혁명] 지상 정체 해소</h4>
+                            <p>지상 물류 로봇과 공중 UAM의 데이터가 UMB에서 통합되어, 도시 전체의 물류 흐름을 최적화합니다.</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="s-card">
                     <h3><i class="fas fa-rocket"></i> 우주산업 x 방산 x 파츠뱅크</h3>
-                    <ul class="interaction-list">
-                        <li><b>[행성 방어]</b> 우주 기지 건설 기술은 곧 고도화된 방산 기술로 치환되어 지구 및 행성간 안보 시스템을 구축합니다.</li>
-                        <li><b>[현지 생산]</b> 파츠뱅크의 3D 프린팅 기술은 우주 현지에서 로봇 부품을 생산하여 보급망의 한계를 극복합니다.</li>
-                    </ul>
+                    <div class="interaction-box">
+                        <div class="win-win-item">
+                            <h4>[국방 시너지] 행성 방어 및 보안</h4>
+                            <p><span>윈-윈 포인트:</span> 우주 기지 건설용 중장비 로봇 기술은 차세대 지능형 방산 장비로 즉각 전환됩니다. 파츠뱅크의 3D 프린팅 현지 생산 기술은 우주와 전장 어디서든 즉각적인 보급을 가능케 합니다.</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="s-card">
-                    <h3><i class="fas fa-dna"></i> BIO BANK x 의료 x 1가구 다로봇</h3>
-                    <ul class="interaction-list">
-                        <li><b>[예방 의료]</b> 가정에 상주하는 '케어 로봇'이 거주자의 바이오 데이터를 수집, BIO BANK와 연동하여 질병을 사전에 차단합니다.</li>
-                        <li><b>[장기 보존]</b> 휴머노이드의 정밀 제어 기술은 BIO BANK 내 생체 샘플의 완벽한 핸들링과 수술 로봇 기술의 표준이 됩니다.</li>
-                    </ul>
+                    <h3><i class="fas fa-dna"></i> BIO BANK x 의료 x 가계</h3>
+                    <div class="interaction-box">
+                        <div class="win-win-item">
+                            <h4>[생명 시너지] 영생을 향한 데이터</h4>
+                            <p><span>윈-윈 포인트:</span> 가정에 상주하는 2~3대의 로봇이 실시간으로 거주자의 생체 신호를 수집합니다. 수집된 데이터는 BIO BANK에 저장되어 분석되며, 이상 징후 시 의료 로봇이 PHONE을 통해 긴급 처치를 지시합니다.</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="s-card">
-                    <h3><i class="fas fa-seedling"></i> 농어촌 x PHONE x 휴머노이드</h3>
-                    <ul class="interaction-list">
-                        <li><b>[원격 경영]</b> 도시의 소유주가 PHK PHONE을 통해 농촌/어촌의 로봇 군단을 실시간 지휘하며 생산물을 직접 관리합니다.</li>
-                        <li><b>[정밀 조업]</b> 고령화된 지역의 노동을 Figure AI 로봇이 완벽 대체하여 식량 주권을 PHK 시스템 아래 통합합니다.</li>
-                    </ul>
+                    <h3><i class="fas fa-seedling"></i> 특수 로봇 x 농어촌 x PHONE</h3>
+                    <div class="interaction-box">
+                        <div class="win-win-item">
+                            <h4>[생산 시너지] 원격 경영의 완성</h4>
+                            <p><span>윈-윈 포인트:</span> PHK PHONE 인터페이스는 도시의 관리자가 멀리 떨어진 농어촌의 로봇 군단을 실시간 제어하게 합니다. 어촌의 AQUA 로봇과 농촌의 TERRA 로봇은 24시간 자율 조업을 통해 식량 주권을 PHK 시스템 아래 통합합니다.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section id="en" lang="en">
-            <h2 style="font-size: 3.5rem; margin-bottom: 30px;">Global Hyper-Synergy</h2>
-            <div class="synergy-box">
-                <div class="s-card">
-                    <h3><i class="fas fa-atom"></i> Fusion Energy x Humanoids</h3>
-                    <ul class="interaction-list">
-                        <li><b>[Energy]</b> Infinite energy powers the global robot network.</li>
-                        <li><b>[Maintenance]</b> Heat-resistant robots manage fusion reactors beyond human limits.</li>
-                    </ul>
-                </div>
-                </div>
-        </section>
+             <div class="section-header">
+                <h2>HYPER-SYNERGY (WIN-WIN)</h2>
+                <p>The 8 core industries work as a single organism with Robotics as the heart.</p>
+            </div>
+            </section>
 
         </main>
 
     <footer>
-        <p>PI HYEKONG HOLDINGS (PHK) | GLOBAL SYNERGY COMMAND CENTER</p>
-        <p style="margin-top: 15px; font-size: 0.7rem; opacity: 0.4;">CONFIDENTIAL: Strategic interaction map for PHK-Figure AI-POSCO partnership.</p>
+        <p>PI HYEKONG HOLDINGS (PHK) | GLOBAL STRATEGY COMMAND | PRIVATE & CONFIDENTIAL</p>
+        <p style="margin-top: 15px; font-size: 0.7rem; opacity: 0.3;">
+            ESTABLISHED 2026. ALL RIGHTS RESERVED. POWERED BY FIGURE AI & POSCO STEEL INFRASTRUCTURE.
+        </p>
     </footer>
 
     <script>
-        function updateLang(lang) {
-            document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+        function setLanguage(lang) {
+            document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
             document.getElementById(lang).classList.add('active');
             document.body.setAttribute('lang', lang);
             
-            const titles = {
+            const subs = {
                 ko: "인류 문명 재설계의 최고 설계자", en: "THE SUPREME ARCHITECT OF FUTURE",
-                ar: "مهندس الحضارة المستقبلية", zh: "未来文明的最高设计师",
+                zh: "未来文明的最高建筑师", ar: "مهندس الحضارة المستقبلية",
                 es: "ARQUITECTO SUPREMO DEL FUTURO", ja: "未来文明の最高設計者"
             };
-            document.getElementById('hero-sub').innerText = titles[lang];
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            document.getElementById('hero-sub').innerText = subs[lang] || subs['en'];
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
