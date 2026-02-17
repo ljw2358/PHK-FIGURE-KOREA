@@ -3,47 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PiHyeKong (PHK) | The New Era of Labor</title>
+    <title>PI HYEKONG (PHK) | The Nexus of Physical Intelligence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { margin: 0; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; line-height: 1.6; }
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
-        h1 { font-size: 3.5rem; letter-spacing: 12px; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-        .slogan { font-size: 1.2rem; color: #888; margin: 20px 0; letter-spacing: 3px; }
-        .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #222; }
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-        .card { background: #0a0a0a; padding: 30px; border-left: 4px solid #ff4d00; transition: 0.3s; }
-        .card:hover { background: #111; border-left-width: 10px; }
-        h2 { font-size: 2rem; border-bottom: 2px solid #ff4d00; display: inline-block; padding-bottom: 10px; }
-        .footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
+        :root {
+            --primary: #ff4d00; /* PHK 오렌지: 혁명과 에너지 */
+            --bg-dark: #000000;
+            --card-bg: #0a0a0a;
+            --text-main: #ffffff;
+            --text-dim: #888888;
+            --posco-blue: #005aab; /* 포스코 협력 상징 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* 배경 애니메이션 - 데이터 그리드 */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255, 77, 0, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 77, 0, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, #111 0%, #000 100%);
+        }
+
+        .logo-text {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: 20px;
+            margin-bottom: 20px;
+            background: linear-gradient(to bottom, #fff 0%, #444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 2s ease-out;
+        }
+
+        .hero-sub {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 300;
+            letter-spacing: 5px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 2s ease-out 0.5s forwards;
+        }
+
+        .nav-dots {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+        }
+
+        .dot {
+            width: 10px; height: 10px; background: #333; margin: 15px 0; border-radius: 50%;
+            cursor: pointer; transition: 0.3s;
+        }
+
+        .dot.active { background: var(--primary); box-shadow: 0 0 10px var(--primary); }
+
+        /* 컨텐츠 섹션 */
+        .section { padding: 150px 10vw; border-bottom: 1px solid #111; }
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 60px;
+            border-left: 8px solid var(--primary);
+            padding-left: 25px;
+        }
+
+        /* 프로젝트 그리드 */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            padding: 50px;
+            border: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        .project-card:hover {
+            border-color: var(--primary);
+            transform: scale(1.02);
+        }
+
+        .project-card h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .spec-list {
+            margin-top: 30px;
+            list-style: none;
+            font-size: 0.95rem;
+            color: var(--text-dim);
+        }
+
+        .spec-list li { margin-bottom: 12px; display: flex; align-items: center; }
+        .spec-list li i { color: var(--primary); margin-right: 15px; width: 20px; }
+
+        /* 비즈니스 로직 섹션 */
+        .consortium-box {
+            background: linear-gradient(45deg, #050505, #111);
+            padding: 60px;
+            border-radius: 2px;
+            margin-top: 50px;
+        }
+
+        /* 반응형 설정 */
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+            .section { padding: 80px 5vw; }
+            .logo-text { letter-spacing: 10px; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="hero">
-        <h1>PiHyeKong</h1>
-        <div class="slogan">FROM STEEL TO SOUL | PHK & FIGURE AI</div>
-    </div>
 
-    <div class="section">
-        <h2>MANIFESTO</h2>
-        <p>인간의 육체는 노동의 사슬에서 해방될 것입니다. PHK는 포스코의 강철과 Figure AI의 지능을 결합하여 인류 문명의 새로운 지평을 엽니다. 우리는 가장 거친 곳에서 가장 고귀한 가치를 창출합니다.</p>
-    </div>
+    <header>
+        <div class="logo-text">PI HYEKONG</div>
+        <div class="hero-sub">THE SUPREME ARCHITECT OF ROBOTICS</div>
+        <p style="max-width: 600px; color: #666; letter-spacing: 1px;">
+            PHK는 포스코의 고내식 합금 기술과 Figure AI의 차세대 멀티모달 추론 엔진을 융합하여 인류 노동의 역사를 다시 씁니다.
+        </p>
+        <a href="#vision" style="margin-top: 50px; color: #fff; text-decoration: none; border: 1px solid #333; padding: 15px 40px; transition: 0.3s;">
+            INVESTIGATE THE VISION
+        </a>
+    </header>
 
-    <div class="section">
-        <h2>STRATEGIC DOMAINS</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>TERRA (농촌형)</h3>
-                <p>소멸하는 지방의 대지를 로봇이 지킵니다. 자율 수확 및 정밀 방제로 농업의 패러다임을 바꿉니다.</p>
+    <section id="vision" class="section">
+        <h2 class="section-title">MISSION MANIFESTO</h2>
+        <div style="font-size: 1.4rem; color: #ccc; max-width: 900px;">
+            <p>오늘날 인류는 거대한 장벽에 직면해 있습니다. 고령화로 인한 노동 인구의 증발, 기후 위기 속의 식량 안보, 그리고 산업 현장의 끊이지 않는 위협. <b>PiHyeKong (PHK)</b>은 이 절망적인 공식에 대한 기술적 해답입니다.</p>
+            <br>
+            <p>우리는 단순히 로봇을 만들지 않습니다. 우리는 **'물리적 지능의 민주화'**를 지향합니다. 누구나 안전하게, 누구나 풍요롭게 살 수 있도록 PHK가 설계한 로봇 제국이 당신의 삶을 지탱할 것입니다.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">STRATEGIC PROJECTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>PROJECT: TERRA-G</h3>
+                <p>농촌 고령화와 인력 부족 문제를 해결하는 지능형 휴머노이드.</p>
+                <ul class="spec-list">
+                    <li><i class="fas fa-check"></i> 비정형 수확: AI 비전으로 과실의 숙도를 판별하여 정밀 수확</li>
+                    <li><i class="fas fa-check"></i> 전천후 기동: 4족-2족 가변 링크를 통한 논/밭 경사지 이동</li>
+                    <li><i class="fas fa-check"></i> 자율 방제: 잡초와 작물을 구분하여 타겟형 약제 살포</li>
+                    <li><i class="fas fa-check"></i> 24/7 케어: 야간 축사 모니터링 및 응급 상황 즉시 보고</li>
+                </ul>
             </div>
-            <div class="card">
-                <h3>AQUA (어촌형)</h3>
-                <p>염분과 파도를 견디는 포스코 특수 소재 휴머노이드가 바다의 생산성을 극대화합니다.</p>
+            <div class="project-card">
+                <h3>PROJECT: AQUA-M</h3>
+                <p>염분과 수압을 극복하는 포스코 특수 소재 기반 해양 휴머노이드.</p>
+                <ul class="spec-list">
+                    <li><i class="fas fa-check"></i> 슈퍼 포스코 강판: 염분 부식 방지 특수 코팅 외장재 적용</li>
+                    <li><i class="fas fa-check"></i> 극한 작업: 심해 양식장 그물 인양 및 하부 지지대 유지보수</li>
+                    <li><i class="fas fa-check"></i> 지능형 선별: 어획 즉시 어종별 자동 분류 및 진공 포장</li>
+                    <li><i class="fas fa-check"></i> 해양 정화: 미세 플라스틱 및 해상 쓰레기 자율 수거 엔진</li>
+                </ul>
+            </div>
+            <div class="project-card">
+                <h3>PROJECT: IRON BRAIN</h3>
+                <p>포스코 제철소의 완전 무인화를 위한 엔드투엔드 로봇 솔루션.</p>
+                <ul class="spec-list">
+                    <li><i class="fas fa-check"></i> 고온 내열 실드: 1500도의 고열 환경 작업 가능 시스템</li>
+                    <li><i class="fas fa-check"></i> 정밀 가공: Figure AI의 미세 제어 기술을 통한 강판 표면 검사</li>
+                    <li><i class="fas fa-check"></i> 물류 혁신: 제철소 내 초거대 하중 이송 및 자동 적재</li>
+                    <li><i class="fas fa-check"></i> 안전 Zero: 고위험 구역 인력 투입 0% 목표</li>
+                </ul>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="footer">
-        &copy; 2026 PI HYEKONG (PHK) HOLDINGS. ALL RIGHTS RESERVED.
-    </div>
+    <section class="section">
+        <h2 class="section-title">THE CONSORTIUM</h2>
+        <div class="consortium-box">
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">PHK는 세계 최고의 기업들과 연합하여 견고한 생태계를 구축합니다.</p>
+            <div style="display: flex; justify-content: space-around; flex-wrap: wrap; opacity: 0.7;">
+                <div style="margin: 20px;"><strong>POSCO</strong><br>Material & Infra</div>
+                <div style="margin: 20px;"><strong>FIGURE AI</strong><br>Intelligence Engine</div>
+                <div style="margin: 20px;"><strong>PI HYEKONG</strong><br>Capital & Strategy</div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>PI HYEKONG HOLDINGS (PHK) | Global HQ</p>
+        <p style="margin-top: 10px; opacity: 0.5;">&copy; 2026 PI HYEKONG. ALL RIGHTS RESERVED. PRIVATE & CONFIDENTIAL.</p>
+    </footer>
+
 </body>
 </html>
