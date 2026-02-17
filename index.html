@@ -2,222 +2,48 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>PHG Chairman App</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiHyeKong (PHK) | The New Era of Labor</title>
     <style>
-        :root {
-            --primary: #00ffcc;
-            --bg: #000000;
-            --card: #121212;
-            --text: #ffffff;
-            --gray: #888888;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden; /* 앱 느낌을 위해 스크롤 제어 */
-        }
-
-        /* 상태바 */
-        .status-bar {
-            height: 44px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* 앱 헤더 */
-        .app-header {
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .app-header h1 {
-            font-size: 24px;
-            margin: 0;
-            color: var(--primary);
-            letter-spacing: 1px;
-        }
-
-        .profile-pic {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #000;
-            font-weight: bold;
-        }
-
-        /* 메인 컨텐츠 영역 (스크롤 가능) */
-        .content {
-            height: calc(100vh - 180px);
-            overflow-y: auto;
-            padding: 0 20px;
-        }
-
-        /* 자산 현황 카드 */
-        .balance-card {
-            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
-            padding: 25px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #333;
-        }
-
-        .balance-card span { color: var(--gray); font-size: 14px; }
-        .balance-card h2 { font-size: 32px; margin: 10px 0; color: var(--primary); }
-
-        /* 로봇 상태 그리드 */
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-
-        .stat-box {
-            background: var(--card);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #222;
-        }
-
-        .stat-box i { color: var(--primary); margin-bottom: 10px; font-size: 20px; }
-        .stat-box .label { color: var(--gray); font-size: 12px; display: block; }
-        .stat-box .value { font-size: 18px; font-weight: bold; margin-top: 5px; display: block; }
-
-        /* 하단 네비게이션 바 */
-        .nav-bar {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(18, 18, 18, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            border-top: 1px solid #222;
-            padding-bottom: 15px;
-        }
-
-        .nav-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--gray);
-            font-size: 10px;
-            text-decoration: none;
-        }
-
-        .nav-item.active { color: var(--primary); }
-        .nav-item i { font-size: 20px; margin-bottom: 5px; }
-
-        /* 애니메이션 효과 */
-        .pulse {
-            animation: pulse-animation 2s infinite;
-        }
-
-        @keyframes pulse-animation {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
+        body { margin: 0; background: #000; color: #fff; font-family: 'Apple SD Gothic Neo', sans-serif; line-height: 1.6; }
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle, #1a1a1a 0%, #000 100%); }
+        h1 { font-size: 3.5rem; letter-spacing: 12px; margin: 0; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+        .slogan { font-size: 1.2rem; color: #888; margin: 20px 0; letter-spacing: 3px; }
+        .section { padding: 80px 20px; max-width: 1000px; margin: 0 auto; border-bottom: 1px solid #222; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .card { background: #0a0a0a; padding: 30px; border-left: 4px solid #ff4d00; transition: 0.3s; }
+        .card:hover { background: #111; border-left-width: 10px; }
+        h2 { font-size: 2rem; border-bottom: 2px solid #ff4d00; display: inline-block; padding-bottom: 10px; }
+        .footer { text-align: center; padding: 40px; color: #444; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-
-    <div class="status-bar">
-        <span>11:11</span>
-        <div>
-            <i class="fas fa-signal"></i>
-            <i class="fas fa-wifi"></i>
-            <i class="fas fa-battery-full"></i>
-        </div>
+    <div class="hero">
+        <h1>PiHyeKong</h1>
+        <div class="slogan">FROM STEEL TO SOUL | PHK & FIGURE AI</div>
     </div>
 
-    <header class="app-header">
-        <div>
-            <span style="color: var(--gray); font-size: 14px;">Welcome Back,</span>
-            <h1>혜공 형님</h1>
-        </div>
-        <div class="profile-pic">HG</div>
-    </header>
+    <div class="section">
+        <h2>MANIFESTO</h2>
+        <p>인간의 육체는 노동의 사슬에서 해방될 것입니다. PHK는 포스코의 강철과 Figure AI의 지능을 결합하여 인류 문명의 새로운 지평을 엽니다. 우리는 가장 거친 곳에서 가장 고귀한 가치를 창출합니다.</p>
+    </div>
 
-    <div class="content">
-        <div class="balance-card">
-            <span>Project PHG Acquisition Fund</span>
-            <h2>$7.25 Billion</h2>
-            <div style="font-size: 14px; color: #00ff00;">▲ 12.5% vs Last Month</div>
-        </div>
-
-        <h3 style="margin-bottom: 15px;">Live Robot Status</h3>
+    <div class="section">
+        <h2>STRATEGIC DOMAINS</h2>
         <div class="grid">
-            <div class="stat-box">
-                <i class="fas fa-robot"></i>
-                <span class="label">Active Units</span>
-                <span class="value">1,248 <small style="color:var(--primary)">Online</small></span>
+            <div class="card">
+                <h3>TERRA (농촌형)</h3>
+                <p>소멸하는 지방의 대지를 로봇이 지킵니다. 자율 수확 및 정밀 방제로 농업의 패러다임을 바꿉니다.</p>
             </div>
-            <div class="stat-box">
-                <i class="fas fa-bolt pulse"></i>
-                <span class="label">Avg. Battery</span>
-                <span class="value">88.4%</span>
-            </div>
-            <div class="stat-box">
-                <i class="fas fa-microchip"></i>
-                <span class="label">AI Sync Rate</span>
-                <span class="value">99.9%</span>
-            </div>
-            <div class="stat-box">
-                <i class="fas fa-globe"></i>
-                <span class="label">Regions</span>
-                <span class="value">12 Global Hubs</span>
-            </div>
-        </div>
-
-        <h3 style="margin-bottom: 15px;">Acquisition Progress</h3>
-        <div class="stat-box" style="margin-bottom: 100px;">
-            <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
-                <span style="font-size:14px;">Figure AI Equity Secured</span>
-                <span style="color:var(--primary)">68%</span>
-            </div>
-            <div style="width:100%; height:8px; background:#333; border-radius:4px;">
-                <div style="width:68%; height:100%; background:var(--primary); border-radius:4px;"></div>
+            <div class="card">
+                <h3>AQUA (어촌형)</h3>
+                <p>염분과 파도를 견디는 포스코 특수 소재 휴머노이드가 바다의 생산성을 극대화합니다.</p>
             </div>
         </div>
     </div>
 
-    <nav class="nav-bar">
-        <a href="#" class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-chart-line"></i>
-            <span>Market</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-shield-alt"></i>
-            <span>Security</span>
-        </a>
-        <a href="#" class="nav-item">
-            <i class="fas fa-cog"></i>
-            <span>Settings</span>
-        </a>
-    </nav>
-
+    <div class="footer">
+        &copy; 2026 PI HYEKONG (PHK) HOLDINGS. ALL RIGHTS RESERVED.
+    </div>
 </body>
 </html>
