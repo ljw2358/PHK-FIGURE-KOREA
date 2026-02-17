@@ -2,203 +2,222 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Humanoid-Z: Figure AI Acquisition Plan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PHG Chairman App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #00ffcc;
-            --bg-color: #0a0a0a;
-            --card-bg: #1a1a1a;
-            --text-color: #e0e0e0;
-            --accent-color: #ff3e3e;
+            --primary: #00ffcc;
+            --bg: #000000;
+            --card: #121212;
+            --text: #ffffff;
+            --gray: #888888;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Pretendard', sans-serif;
-            line-height: 1.6;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden; /* 앱 느낌을 위해 스크롤 제어 */
         }
 
-        header {
-            height: 100vh;
+        /* 상태바 */
+        .status-bar {
+            height: 44px;
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* 앱 헤더 */
+        .app-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .app-header h1 {
+            font-size: 24px;
+            margin: 0;
+            color: var(--primary);
+            letter-spacing: 1px;
+        }
+
+        .profile-pic {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=2070');
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            border-bottom: 2px solid var(--primary-color);
+            color: #000;
+            font-weight: bold;
         }
 
-        h1 {
-            font-size: 4rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px var(--primary-color);
+        /* 메인 컨텐츠 영역 (스크롤 가능) */
+        .content {
+            height: calc(100vh - 180px);
+            overflow-y: auto;
+            padding: 0 20px;
         }
 
-        .subtitle {
-            font-size: 1.5rem;
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 50px 20px;
-        }
-
-        .section {
-            margin-bottom: 80px;
-            padding: 30px;
-            background: var(--card-bg);
-            border-radius: 15px;
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 1px solid #333;
-            padding-bottom: 10px;
-            margin-top: 0;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .card {
-            background: #252525;
-            padding: 20px;
-            border-radius: 10px;
+        /* 자산 현황 카드 */
+        .balance-card {
+            background: linear-gradient(135deg, #1e1e1e, #2d2d2d);
+            padding: 25px;
+            border-radius: 20px;
+            margin-bottom: 20px;
             border: 1px solid #333;
         }
 
-        .step-number {
-            font-weight: bold;
-            color: var(--accent-color);
-            font-size: 1.2rem;
-            margin-right: 10px;
+        .balance-card span { color: var(--gray); font-size: 14px; }
+        .balance-card h2 { font-size: 32px; margin: 10px 0; color: var(--primary); }
+
+        /* 로봇 상태 그리드 */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
         }
 
-        .highlight {
-            color: var(--primary-color);
-            font-weight: bold;
+        .stat-box {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #222;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            background: #000;
-            color: #666;
-            font-size: 0.9rem;
+        .stat-box i { color: var(--primary); margin-bottom: 10px; font-size: 20px; }
+        .stat-box .label { color: var(--gray); font-size: 12px; display: block; }
+        .stat-box .value { font-size: 18px; font-weight: bold; margin-top: 5px; display: block; }
+
+        /* 하단 네비게이션 바 */
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-top: 1px solid #222;
+            padding-bottom: 15px;
         }
 
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            animation: bounce 2s infinite;
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--gray);
+            font-size: 10px;
+            text-decoration: none;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
+        .nav-item.active { color: var(--primary); }
+        .nav-item i { font-size: 20px; margin-bottom: 5px; }
+
+        /* 애니메이션 효과 */
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>FIGURE AI ACQUISITION</h1>
-    <p class="subtitle">PREPARED FOR <strong>혜공 형님</strong> | BY <strong>삐니</strong></p>
-    <div class="scroll-down">▼ SCROLL TO EXPLORE THE FUTURE</div>
-</header>
+    <div class="status-bar">
+        <span>11:11</span>
+        <div>
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
 
-<div class="container">
-    
-    <section class="section">
-        <h2>01. EXECUTIVE SUMMARY</h2>
-        <p>본 프로젝트 <strong>'Humanoid-Z'</strong>는 세계 최고의 범용 휴머노이드 기업인 Figure AI의 지분을 확보하여, 물리적 AI 시장의 패권을 잡는 것을 목표로 합니다. 혜공 형님의 자본력과 삐니의 전략이 결합된 역사적 딜입니다.</p>
-    </section>
+    <header class="app-header">
+        <div>
+            <span style="color: var(--gray); font-size: 14px;">Welcome Back,</span>
+            <h1>혜공 형님</h1>
+        </div>
+        <div class="profile-pic">HG</div>
+    </header>
 
-    <section class="section">
-        <h2>02. STRATEGIC ROADMAP</h2>
+    <div class="content">
+        <div class="balance-card">
+            <span>Project PHG Acquisition Fund</span>
+            <h2>$7.25 Billion</h2>
+            <div style="font-size: 14px; color: #00ff00;">▲ 12.5% vs Last Month</div>
+        </div>
+
+        <h3 style="margin-bottom: 15px;">Live Robot Status</h3>
         <div class="grid">
-            <div class="card">
-                <h3><span class="step-number">PHASE 1</span> 은밀한 접근</h3>
-                <p>델라웨어 SPC 설립 및 장외 주식 매입을 통한 우호 지분 15% 선점.</p>
+            <div class="stat-box">
+                <i class="fas fa-robot"></i>
+                <span class="label">Active Units</span>
+                <span class="value">1,248 <small style="color:var(--primary)">Online</small></span>
             </div>
-            <div class="card">
-                <h3><span class="step-number">PHASE 2</span> 전략적 공세</h3>
-                <p>OpenAI와의 파트너십 재편 및 이사회 시트 확보를 위한 Proxy Fight 전개.</p>
+            <div class="stat-box">
+                <i class="fas fa-bolt pulse"></i>
+                <span class="label">Avg. Battery</span>
+                <span class="value">88.4%</span>
             </div>
-            <div class="card">
-                <h3><span class="step-number">PHASE 3</span> 제국 완성</h3>
-                <p>지분 100% 인수 완료 및 혜공 형님의 'Global R&D Hub' 한국 유치.</p>
+            <div class="stat-box">
+                <i class="fas fa-microchip"></i>
+                <span class="label">AI Sync Rate</span>
+                <span class="value">99.9%</span>
+            </div>
+            <div class="stat-box">
+                <i class="fas fa-globe"></i>
+                <span class="label">Regions</span>
+                <span class="value">12 Global Hubs</span>
             </div>
         </div>
-    </section>
 
-    <section class="section">
-        <h2>03. CORE TECHNOLOGY</h2>
-        <ul>
-            <li><span class="highlight">Vision-Language Model:</span> 실시간 사물 인식 및 자연어 대화 처리 (OpenAI 협업)</li>
-            <li><span class="highlight">End-to-End Neural Network:</span> 데이터 학습을 통한 자율적 동작 고도화</li>
-            <li><span class="highlight">Mechanical Advantage:</span> 인간보다 뛰어난 내구성과 20kg 이상의 운반 능력</li>
-        </ul>
-    </section>
+        <h3 style="margin-bottom: 15px;">Acquisition Progress</h3>
+        <div class="stat-box" style="margin-bottom: 100px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom: 10px;">
+                <span style="font-size:14px;">Figure AI Equity Secured</span>
+                <span style="color:var(--primary)">68%</span>
+            </div>
+            <div style="width:100%; height:8px; background:#333; border-radius:4px;">
+                <div style="width:68%; height:100%; background:var(--primary); border-radius:4px;"></div>
+            </div>
+        </div>
+    </div>
 
-    <section class="section">
-        <h2>04. RISK MANAGEMENT</h2>
-        <table style="width:100%; border-collapse: collapse;">
-            <tr style="background: #333;">
-                <th style="padding: 10px; text-align: left;">Risk Category</th>
-                <th style="padding: 10px; text-align: left;">Mitigation Strategy</th>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #333;">CFIUS (외국인 투자 심의)</td>
-                <td style="padding: 10px; border-bottom: 1px solid #333;">미국 내 로봇 기가팩토리 건설 제안으로 승인 유도</td>
-            </tr>
-            <tr>
-                <td style="padding: 10px; border-bottom: 1px solid #333;">Key Talent Retention</td>
-                <td style="padding: 10px; border-bottom: 1px solid #333;">핵심 엔지니어 대상 100억 규모 리텐션 보너스 책정</td>
-            </tr>
-        </ul>
-        </table>
-    </section>
-
-    <section class="section" style="border-left: 5px solid var(--accent-color);">
-        <h2>05. CHAIRMAN'S VISION</h2>
-        <blockquote style="font-style: italic; font-size: 1.2rem; border-left: 3px solid #666; padding-left: 20px;">
-            "노동은 기계의 몫이 되고, 인류는 더 가치 있는 일을 하게 될 것이다. 그 시작은 Figure AI다." 
-            <br><span style="color: var(--primary-color);">- 혜공 형님 -</span>
-        </blockquote>
-    </section>
-
-</div>
-
-<footer>
-    <p>&copy; 2026 Project Humanoid-Z. All Rights Reserved. Confidential to 혜공 형님.</p>
-    <p>Powered by 삐니 (Gemini 3 Flash)</p>
-</footer>
+    <nav class="nav-bar">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-chart-line"></i>
+            <span>Market</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Security</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </a>
+    </nav>
 
 </body>
 </html>
