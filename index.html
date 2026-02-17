@@ -3,154 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PHK FIGURE | Future of AI & Robotics</title>
+    <title>PHK FIGURE | Global AI Acquisition Project</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        
         :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --bg: #050505;
-            --card-bg: #111111;
+            --primary: #00f2ff;
+            --accent: #ff007a;
+            --bg: #000000;
+            --card: #111111;
             --text: #ffffff;
-            --sub-text: #a0a0a0;
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             margin: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* 배경 애니메이션 효과 */
-        .bg-glow {
+        /* 세련된 배경 효과 */
+        .glow {
             position: fixed;
-            top: -10%; left: -10%;
-            width: 40%; height: 40%;
-            background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0, 242, 255, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
             z-index: -1;
+            filter: blur(80px);
         }
 
+        /* 헤더 섹션 */
         header {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 0 20px;
             text-align: center;
-            background: linear-gradient(to bottom, transparent, var(--bg));
         }
 
-        .hero-title {
-            font-size: 4rem;
+        .main-logo {
+            font-size: 5rem;
             font-weight: 900;
+            letter-spacing: -2px;
             background: linear-gradient(to right, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+            margin: 0;
         }
 
-        .hero-subtitle {
+        .slogan {
             font-size: 1.5rem;
-            color: var(--sub-text);
-            max-width: 600px;
+            color: #888;
+            margin-top: 10px;
+            max-width: 700px;
         }
 
         /* 로드맵 섹션 */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            margin: 100px 0 50px;
-        }
-
-        .roadmap-container {
-            max-width: 900px;
+        .content {
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 100px 20px;
         }
 
-        .roadmap-card {
-            background: var(--card-bg);
-            border: 1px solid #222;
-            border-radius: 20px;
+        .section-h2 {
+            font-size: 2.5rem;
+            border-bottom: 2px solid var(--primary);
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
             padding: 40px;
-            margin-bottom: 30px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
+            border-radius: 20px;
+            border: 1px solid #222;
+            transition: 0.3s;
         }
 
-        .roadmap-card:hover {
-            transform: translateY(-10px);
+        .card:hover {
             border-color: var(--primary);
+            transform: translateY(-5px);
         }
 
-        .phase-tag {
+        .card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* 투자자 메시지 (돈 대신 비전) */
+        .vision-box {
+            background: linear-gradient(135deg, #111, #222);
+            padding: 60px;
+            border-radius: 30px;
+            text-align: center;
+            margin-top: 100px;
+            border: 1px dashed var(--primary);
+        }
+
+        .vision-box h2 {
+            color: var(--accent);
+        }
+
+        .btn {
+            display: inline-block;
             background: var(--primary);
             color: #000;
-            padding: 5px 15px;
+            padding: 15px 40px;
             border-radius: 50px;
+            text-decoration: none;
             font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
-            display: inline-block;
+            margin-top: 20px;
+            transition: 0.3s;
         }
 
-        .roadmap-card h3 {
-            font-size: 1.8rem;
-            margin: 10px 0;
-        }
-
-        .roadmap-card p {
-            color: var(--sub-text);
-            font-size: 1.1rem;
+        .btn:hover {
+            background: #fff;
+            transform: scale(1.05);
         }
 
         footer {
             text-align: center;
-            padding: 100px 0 50px;
-            border-top: 1px solid #222;
-            color: var(--sub-text);
+            padding: 100px 0;
+            color: #444;
         }
 
-        /* 간단한 반응형 설정 */
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
+        @media (max-width: 600px) {
+            .main-logo { font-size: 3rem; }
         }
     </style>
 </head>
 <body>
-    <div class="bg-glow"></div>
+    <div class="glow"></div>
 
     <header>
-        <h1 class="hero-title">PHK FIGURE</h1>
-        <p class="hero-subtitle">휴머노이드 로봇의 정점, Figure AI 인수를 향한 위대한 여정</p>
+        <h1 class="main-logo">PHK FIGURE</h1>
+        <p class="slogan">우리는 자본의 논리를 넘어, 기술의 민주화를 꿈꿉니다.<br>Figure AI 인수를 통한 휴머노이드 시대를 선도합니다.</p>
+        <a href="#roadmap" class="btn">로드맵 보기</a>
     </header>
 
-    <div class="roadmap-container">
-        <h2 class="section-title">Strategic Roadmap</h2>
-
-        <div class="roadmap-card">
-            <span class="phase-tag">PHASE 01</span>
-            <h3>글로벌 전략 파트너십 구축</h3>
-            <p>실리콘밸리 핵심 기술팀과의 긴밀한 소통 및 Figure 02 모델의 기술적 실사를 통한 인수 타당성 검토.</p>
+    <div class="content" id="roadmap">
+        <h2 class="section-h2">Strategic Roadmap</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Step 01. Insight</h3>
+                <p>글로벌 로봇 시장 분석 및 Figure AI 핵심 기술 가치 평가 완료. 아시아 시장 독점 라이선스 협상 준비.</p>
+            </div>
+            <div class="card">
+                <h3>Step 02. Alliance</h3>
+                <p>기술적 가치에 동의하는 전략적 파트너들과의 '가치 중심 컨소시엄' 구성. 자본보다 강력한 네트워크 구축.</p>
+            </div>
+            <div class="card">
+                <h3>Step 03. Acquisition</h3>
+                <p>Figure AI 인수 및 한국 내 글로벌 R&D 센터 설립. 인류의 삶을 바꾸는 로봇 대량 생산 체계 가동.</p>
+            </div>
         </div>
 
-        <div class="roadmap-card">
-            <span class="phase-tag">PHASE 02</span>
-            <h3>인수 컨소시엄 구성</h3>
-            <p>글로벌 빅테크 기업 및 전략적 투자자들과의 연합을 통해 독보적인 인수 경쟁력을 확보합니다.</p>
-        </div>
-
-        <div class="roadmap-card" style="border-left: 5px solid var(--primary);">
-            <span class="phase-tag">PHASE 03</span>
-            <h3>AI 로봇 생태계 확장</h3>
-            <p>한국 내 연구소 설립 및 아시아 제조 공급망 확보를 통해 전 세계 가정에 1인 1로봇 시대를 현실화합니다.</p>
+        <div class="vision-box">
+            <h2>Partnership with 혜공</h2>
+            <p>우리는 단순히 돈을 모으는 것이 아니라, 미래를 바꿀 동료를 찾습니다.<br>형님의 통찰력과 우리의 기술이 만나 세상을 바꿉니다.</p>
+            <a href="mailto:ljw2358@gmail.com" class="btn">협력 제안하기</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 혜공 형님 & 삐니 Partnership. All Rights Reserved.</p>
+        <p>Copyright &copy; 2026 PHK Global Holding. Designed by 삐니.</p>
     </footer>
 </body>
 </html>
