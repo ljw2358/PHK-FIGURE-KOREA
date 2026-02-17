@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHK FIGURE | Future of AI & Robotics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #050505;
+            --card-bg: #111111;
+            --text: #ffffff;
+            --sub-text: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* 배경 애니메이션 효과 */
+        .bg-glow {
+            position: fixed;
+            top: -10%; left: -10%;
+            width: 40%; height: 40%;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.15) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--sub-text);
+            max-width: 600px;
+        }
+
+        /* 로드맵 섹션 */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 100px 0 50px;
+        }
+
+        .roadmap-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .roadmap-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .phase-tag {
+            background: var(--primary);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .roadmap-card h3 {
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        .roadmap-card p {
+            color: var(--sub-text);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 100px 0 50px;
+            border-top: 1px solid #222;
+            color: var(--sub-text);
+        }
+
+        /* 간단한 반응형 설정 */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-glow"></div>
+
+    <header>
+        <h1 class="hero-title">PHK FIGURE</h1>
+        <p class="hero-subtitle">휴머노이드 로봇의 정점, Figure AI 인수를 향한 위대한 여정</p>
+    </header>
+
+    <div class="roadmap-container">
+        <h2 class="section-title">Strategic Roadmap</h2>
+
+        <div class="roadmap-card">
+            <span class="phase-tag">PHASE 01</span>
+            <h3>글로벌 전략 파트너십 구축</h3>
+            <p>실리콘밸리 핵심 기술팀과의 긴밀한 소통 및 Figure 02 모델의 기술적 실사를 통한 인수 타당성 검토.</p>
+        </div>
+
+        <div class="roadmap-card">
+            <span class="phase-tag">PHASE 02</span>
+            <h3>인수 컨소시엄 구성</h3>
+            <p>글로벌 빅테크 기업 및 전략적 투자자들과의 연합을 통해 독보적인 인수 경쟁력을 확보합니다.</p>
+        </div>
+
+        <div class="roadmap-card" style="border-left: 5px solid var(--primary);">
+            <span class="phase-tag">PHASE 03</span>
+            <h3>AI 로봇 생태계 확장</h3>
+            <p>한국 내 연구소 설립 및 아시아 제조 공급망 확보를 통해 전 세계 가정에 1인 1로봇 시대를 현실화합니다.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 혜공 형님 & 삐니 Partnership. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
